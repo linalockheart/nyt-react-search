@@ -8,7 +8,7 @@ const db = require("./models");
 
 const app = express();
 
-const PORT = process.env.PORT || 3000; //should it be 3000 for React?
+const PORT = process.env.PORT || 8080; //should it be 3000 for react?
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
