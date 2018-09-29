@@ -8,7 +8,7 @@ const db = require("./models");
 
 const app = express();
 
-const PORT = process.env.PORT || 8080; //should it be 3000 for react?
+const PORT = process.env.PORT || 3001;
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,6 +28,11 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err){
     console.log("connected to mongoose");
   }
 });
+
+//Just a test to make sure the server is working
+app.get('/api/hello', (req, res) => {
+    res.send({ express: 'Hello From Express' });
+  });
 
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
