@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <Header/>
+        <Header/>
         <Wrapper>
           <Search>
           </Search>
@@ -18,7 +18,7 @@ class App extends Component {
           </Results>
           <Saved>
           </Saved>
-        </Wrapper> */}
+        </Wrapper>
       </div>
     );
   }
