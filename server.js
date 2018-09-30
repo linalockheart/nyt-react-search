@@ -2,17 +2,29 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const routes = require("./routes");
+
+//don't need both of these. shoudl they live in a different file?
+const request = require("request");
+const axios = require("axios"); // 
+
+//need to make the dotenv file
+require("dotenv").config();
+
+//Do i want to use these here? Should I put them in conroller instead?
 var ObjectId = require("mongoose").Types.ObjectId;
 var request = require("request");
 const db = require("./models");
-
-const app = express();
+////////////////////////////////////////////////////////////////////
 
 const PORT = process.env.PORT || 3001;
 
-app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: true }));
+const app = express();
+
 app.use(express.static(__dirname + "/public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(routes); //do I need this one here?
+app.use(logger("dev"));
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytreact";
@@ -30,9 +42,9 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err){
 });
 
 //Just a test to make sure the server is working
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-  });
+// app.get('/api/hello', (req, res) => {
+//     res.send({ express: 'Hello From Express' });
+//   });
 
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);

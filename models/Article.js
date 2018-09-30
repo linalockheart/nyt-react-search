@@ -1,29 +1,29 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var ArticleSchema = new Schema({
+const ArticleSchema = new Schema({
 
   title: {
     type: String,
-    required: true,
+    required: true
+  },
+
+  date: { type: Date,
+    default: Date.now //should this just be required instead of defaulting to now?
+  },
+
+  summary: { //called snippet in JSON object
+    type: String,
+    required: true
   },
 
   link: {
     type: String,
     required: true
-  },
-
-  summary: {
-    type: String,
-    required: true
-  },
-
-  note: {
-    type: Schema.Types.ObjectId,
-    ref: "Note"
   }
+
 });
 
-var Article = mongoose.model("Article", ArticleSchema);
+const Article = mongoose.model("Article", ArticleSchema);
 
 module.exports = Article;
