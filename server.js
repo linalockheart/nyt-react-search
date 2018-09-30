@@ -40,10 +40,10 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, function(err){
   }
 });
 
-//Just a test to make sure the server is working
-// app.get('/api/hello', (req, res) => {
-//     res.send({ express: 'Hello From Express' });
-//   });
+// create a GET route
+app.get('/express_backend', (req, res) => {
+  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+});
 
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
