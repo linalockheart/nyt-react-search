@@ -8,8 +8,9 @@ const ArticleSchema = new Schema({
     required: true
   },
 
-  date: { type: Date,
-    default: Date.now //should this just be required instead of defaulting to now?
+  date: { 
+    type: Date,
+    required: true
   },
 
   summary: { //called snippet in JSON object
@@ -20,6 +21,11 @@ const ArticleSchema = new Schema({
   link: {
     type: String,
     required: true
+  },
+
+  saved: {
+    type: Boolean,
+    default: false
   }
 
 });

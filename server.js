@@ -12,8 +12,7 @@ const axios = require("axios"); //
 require("dotenv").config();
 
 //Do i want to use these here? Should I put them in conroller instead?
-var ObjectId = require("mongoose").Types.ObjectId;
-var request = require("request");
+const ObjectId = require("mongoose").Types.ObjectId;
 const db = require("./models");
 ////////////////////////////////////////////////////////////////////
 
@@ -27,7 +26,7 @@ app.use(routes); //do I need this one here?
 app.use(logger("dev"));
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytreact";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/nytreact";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB

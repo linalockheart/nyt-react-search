@@ -1,6 +1,5 @@
 const db = require("../models");
 
-// Defining methods for the articlesController
 module.exports = {
   findAll: function(req, res) {
     db.Article

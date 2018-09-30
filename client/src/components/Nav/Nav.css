@@ -1,0 +1,21 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar-dark {
+    background: black !important;
+}
+
+.navbar-nav {
+    float: right;
+}
+
+.navbar-item {
+    color: white !important;
+}
+
+h3 {
+    font-size: 200%;
+}
