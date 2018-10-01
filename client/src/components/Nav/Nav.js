@@ -6,14 +6,14 @@ const Nav = () => (
 
   <nav className="navbar navbar-dark bg-primary">
     <Link className="navbar-brand" to="/">NYT React Article Search</Link>
-    <ul className="navbar-nav">
-      <li className="nav-item">
+    <div className="nav-buttons">
+      <span className="nav-item homeBtn">
         <Link to="/"><button type="button" className="btn btn-info">Home</button></Link>
-      </li>
-      <li className="nav-item">
+      </span>
+      <span className="nav-item savedBtn">
         <Link to="/savedArticles"><button type="button" className="btn btn-info">Saved Articles</button></Link>
-      </li>
-    </ul>
+      </span>
+      </div>
 </nav>
 )
 

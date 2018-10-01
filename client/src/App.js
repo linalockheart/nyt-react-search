@@ -11,6 +11,7 @@ import Saved from "./pages/Saved";
 // import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+// import Wrapper from "./components/Wrapper";
 import './App.css';
 
 const App = () => (
