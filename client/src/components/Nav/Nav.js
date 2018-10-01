@@ -6,7 +6,7 @@ const Nav = () => (
 
   <nav className="navbar navbar-dark bg-primary">
     <Link className="navbar-brand" to="/">NYT React Article Search</Link>
-    <ul className="navbar-nav" style={{float: 'right'}}>
+    <ul className="navbar-nav">
       <li className="nav-item">
         <Link to="/"><button type="button" className="btn btn-info">Home</button></Link>
       </li>
@@ -15,7 +15,6 @@ const Nav = () => (
       </li>
     </ul>
 </nav>
+)
 
 export default Nav;
-
-import React from "react";

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Header.css";
+import "./Jumbotron.css";
 
-const Header = ({ children }) => (
+const Jumbotron = ({ children }) => (
   <div
     className="jumbotron"
   >
@@ -9,4 +9,4 @@ const Header = ({ children }) => (
   </div>
 );
 
-export default Header;
+export default Jumbotron;

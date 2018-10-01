@@ -12,30 +12,28 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import Wrapper from "../../components/Wrapper"
 
-class Books extends Component {
+class Home extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    articles: []
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadArticles();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadArticles = () => {
+    API.getArticles()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ articles: res.data })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteArticle = id => {
+    API.deleteArticle(id)
+      .then(res => this.loadArticles())
       .catch(err => console.log(err));
   };
 
@@ -49,12 +47,12 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.saveBook({
+      API.saveArticle({
         title: this.state.title,
         author: this.state.author,
         synopsis: this.state.synopsis
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadArticles())
         .catch(err => console.log(err));
     }
   };
@@ -65,7 +63,7 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>NYT React Search</h1>
             </Jumbotron>
             <form>
               <Input
@@ -94,20 +92,20 @@ class Books extends Component {
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
+          <Col size="md-12">
             <Jumbotron>
               <h1>Books On My List</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.articles.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.articles.map(articles => (
+                  <ListItem key={articles._id}>
+                    <Link to={"/articles/" + articles._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {articles.title} by {articles.author}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -121,4 +119,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Home;
