@@ -13,4 +13,10 @@ router
   .put(articlesController.update)
   .delete(articlesController.remove);
 
+router
+  .route("/saved")
+  .get(articlesController.findById)
+  .put(articlesController.update)
+  .delete(articlesController.remove);
+
 module.exports = router;

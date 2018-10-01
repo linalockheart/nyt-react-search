@@ -11,6 +11,10 @@ import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../../components/Grid";
+import { List, ListItem } from "../../components/List";
+import Wrapper from "../../components/Wrapper";
+
 
 class Saved extends Component {
     state = {
@@ -40,6 +44,40 @@ componentDidMount() {
 
 //Need to add render() return with html components here
 
-};
+
+render() {
+  return (
+
+<div>
+<Wrapper>
+<Jumbotron>
+        <h1>Saved Articles</h1>
+    </Jumbotron>
+<Container>
+<Col size="md-12">
+            {this.state.articles.length ? (
+              <List>
+                {this.state.articles.map(articles => (
+                  <ListItem key={articles._id}>
+                    <Link to={"/articles/" + articles._id}>
+                      <strong>
+                        {articles.title} by {articles.author}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
+          </Col>
+  </Container>
+  </Wrapper>
+  </div>
+  )
+
+}
+}
 
 export default Saved;

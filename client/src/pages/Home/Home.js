@@ -59,62 +59,33 @@ class Home extends Component {
 
   render() {
     return (
+    <div>
+    <Wrapper>
+    <Jumbotron>
+        <h1>NYT React Search</h1>
+    </Jumbotron>
       <Container fluid>
         <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>NYT React Search</h1>
-            </Jumbotron>
+          <Col size="md-12">
             <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="search"
+                placeholder="Enter a topic to search (required)"
               />
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Search
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {this.state.articles.length ? (
-              <List>
-                {this.state.articles.map(articles => (
-                  <ListItem key={articles._id}>
-                    <Link to={"/articles/" + articles._id}>
-                      <strong>
-                        {articles.title} by {articles.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
         </Row>
       </Container>
+      </Wrapper>
+      </div>
     );
   }
 }

@@ -1,12 +1,13 @@
 .wrapper {
     padding-top: 25px;
-    /* background-image: url("https://pre00.deviantart.net/2296/th/pre/f/2007/044/b/c/pokeball_v2_by_swampert.jpg"); */
+    background-image: url("https://www.ilovewallpaper.com/images/muriva-fleet-street-newspaper-wallpaper-black-white-red-102511-p649-749_image.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     height: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-content: flex-start;
     overflow: auto;
+    text-align: center;
   }

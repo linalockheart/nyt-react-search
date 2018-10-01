@@ -1,0 +1,13 @@
+.btn-success {
+    background-color: black !important;
+    border-color: #A72219 !important;;
+    color: white !important;
+    opacity: 1 !important;
+    border-width: medium !important;
+}
+
+.btn-success:hover {
+    opacity: 1 !important;
+    background-color: white !important;
+    color: black !important;
+}

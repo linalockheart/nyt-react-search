@@ -7,14 +7,17 @@
     background: black !important;
 }
 
-.homeBtn {
-    float: right !important;
-}
-
-.savedBtn {
-    padding-right: 3%;
+.btn-info {
+    background-color: #A72219 !important;
+    border-color: white !important;
 }
 
 h3 {
     font-size: 200%;
+}
+
+.btn-info:hover {
+    background-color: white !important;
+    border-color: #A72219 !important;
+    color: #A72219 !important;
 }
