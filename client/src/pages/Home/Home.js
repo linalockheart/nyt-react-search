@@ -5,30 +5,63 @@
 // publication date, and allows the user to visit an article's url or save the article to the MongoDB.
 
 import React, { Component } from "react";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import Wrapper from "../../components/Wrapper"
+import Wrapper from "../../components/Wrapper";
+import Card from "../../components/Card";
 
 class Home extends Component {
   state = {
-    articles: []
+    articles: [],
+    q: "",
+    start_year: "",
+    end_year: "",
+    message: "Search for Articles to Begin!" //do i need this here? where is this even??
   };
 
   componentDidMount() {
-    this.loadArticles();
+    this.getArticles();
   }
 
-  loadArticles = () => {
-    API.getArticles()
+  getArticles = () => {
+    API.getArticles({
+        q: this.state.q,
+        start_year: this.state.start_year,
+        end_year: this.state.end_year
+    })
       .then(res =>
-        this.setState({ articles: res.data })
+        this.setState({ 
+            articles: res.data,
+            message: !res.data.length
+                ? "No articles found. Please try another search."
+                : "" 
+        })
       )
       .catch(err => console.log(err));
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.getArticles();
+    // if (this.state.title && this.state.author) {
+    //   API.saveArticle({
+    //     title: this.state.title,
+    //     author: this.state.author,
+    //     synopsis: this.state.synopsis
+    //   })
+    //     .then(res => this.loadArticles())
+    //     .catch(err => console.log(err));
+    // }
+  };
+
+  handleArticleSave = id => {
+      const article = this.state.articles.find(article => article._id)
+      API.saveArticle(article).then(res => this.getArticles());
   };
 
   deleteArticle = id => {
@@ -36,6 +69,7 @@ class Home extends Component {
       .then(res => this.loadArticles())
       .catch(err => console.log(err));
   };
+//should this delete article be in saved instead????
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -44,18 +78,6 @@ class Home extends Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveArticle({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
-      })
-        .then(res => this.loadArticles())
-        .catch(err => console.log(err));
-    }
-  };
 
   render() {
     return (
@@ -69,32 +91,62 @@ class Home extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
+                handleInputChange={this.handleInputChange}
                 name="search"
                 placeholder="Enter a topic to search (required)"
+                q={this.state.q}
+                start_year={this.state.start_year}
+                end_year={this.state.end_year}
+              />
+            <Input
+                handleInputChange={this.handleInputChange}
+                name="startyear"
+                placeholder="Start Year (optional)"
+                start_year={this.state.start_year}
+              />
+            <Input
+                handleInputChange={this.handleInputChange}
+                name="endyear"
+                placeholder="End Year (optional)"
+                end_year={this.state.end_year}
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
+                handleFormSubmit={this.handleFormSubmit}
               >
                 Search
               </FormBtn>
             </form>
-            <List>
-                {/* {this.state.articles.map(articles)} */}
-                <ListItem
-                    // key={articles._id}
-                    // _id={articles._id}
-                />
-            </List>
+            </Col>
+        </Row>
+
+        <Row>
+          <Col size="md-12">
+            <Card>
+              {this.state.articles.length ? (
+                <List>
+                  {this.state.articles.map(article => (
+                    <ListItem
+                        key={article._id}
+                        _id={article._id}
+                        title={article.headline.main}
+                        url={article.web_url}
+                        date={article.pub_date}
+                        handleClick={this.handleArticleSave}
+                        buttonText="Save"
+                    />
+                ))}
+                </List>
+              ) : (
+                <h2>{this.state.message}</h2>
+              )}
+            </Card>
           </Col>
         </Row>
       </Container>
-      </Wrapper>
-      </div>
+    </Wrapper>
+    </div>
     );
-  }
+  };
 }
 
 export default Home;

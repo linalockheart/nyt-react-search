@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import Wrapper from "../../components/Wrapper";
+import Card from "../../components/Card";
 
 
 class Saved extends Component {
