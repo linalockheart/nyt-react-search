@@ -1,5 +1,6 @@
 .btn-success {
-    background-color: #A72219 !important;
+    /* background-color: #A72219 !important; */
+    background-color: #2B8695 !important;
     border-color: black !important;;
     color: white !important;
     opacity: 1 !important;
@@ -10,5 +11,6 @@
 .btn-success:hover {
     opacity: 1 !important;
     background-color: white !important;
-    color: black !important;
+    /* color: black !important; */
+    color: #2B8695 !important;
 }

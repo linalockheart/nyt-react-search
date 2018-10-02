@@ -108,6 +108,7 @@ class Home extends Component {
                 handleInputChange={this.handleInputChange}
                 name="endyear"
                 placeholder="End Year (optional)"
+
                 end_year={this.state.end_year}
               />
               <FormBtn

@@ -13,7 +13,8 @@
   }
 
   .card-header {
-    background-color: #A72219;
+    /* background-color: #A72219; */
+    background-color: #2B8695 !important;
     color: white;
     border-radius: 0 !important;
   }

@@ -1,8 +1,10 @@
 .wrapper {
     padding-top: 25px;
-    background-image: url("https://www.ilovewallpaper.com/images/muriva-fleet-street-newspaper-wallpaper-black-white-red-102511-p649-749_image.jpg");
+    /* background-image: url("https://www.ilovewallpaper.com/images/muriva-fleet-street-newspaper-wallpaper-black-white-red-102511-p649-749_image.jpg"); */
+    background-image: url("https://i0.wp.com/www.highfaluter.com/wp-content/uploads/2016/12/vintage-newspaper-print.jpg?ssl=1");
     background-size: cover;
-    /* background-repeat: no-repeat; */
+    /* background-size: contain; */
+    background-repeat: no-repeat;
     height: 100%;
     display: flex;
     flex-flow: row wrap;

@@ -54,6 +54,7 @@ render() {
     <Jumbotron>
         <h1>Saved Articles</h1>
     </Jumbotron>
+          <Card>
             {this.state.articles.length ? (
               <List>
                 {this.state.articles.map(articles => (
@@ -70,6 +71,7 @@ render() {
             ) : (
               <h3>No Results to Display</h3>
             )}
+            </Card>
           </Col>
           </Row>
   </Container>
