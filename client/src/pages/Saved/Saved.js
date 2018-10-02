@@ -25,13 +25,13 @@ componentDidMount() {
     this.loadArticles();
   };
 
+  //getSavedArticles function
   loadArticles = () => {
     API.getArticles()
       .then(res =>
-        this.setState({ articles: res.data, 
-                        title: "", //do I need the rest of these?
-                        date: "",
-                        summary: "" })
+        this.setState({ 
+          articles: res.data, 
+        })
       )
       .catch(err => console.log(err));
   };
@@ -42,19 +42,17 @@ componentDidMount() {
       .catch(err => console.log(err));
   };
 
-//Need to add render() return with html components here
-
-
 render() {
   return (
 
 <div>
 <Wrapper>
-<Jumbotron>
+<Container fluid>
+  <Row>
+  <Col size="md-12">
+    <Jumbotron>
         <h1>Saved Articles</h1>
     </Jumbotron>
-<Container>
-<Col size="md-12">
             {this.state.articles.length ? (
               <List>
                 {this.state.articles.map(articles => (
@@ -72,6 +70,7 @@ render() {
               <h3>No Results to Display</h3>
             )}
           </Col>
+          </Row>
   </Container>
   </Wrapper>
   </div>

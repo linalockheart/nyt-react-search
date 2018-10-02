@@ -11,7 +11,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
-import { Input, TextArea, FormBtn } from "../../components/Form";
+import { Input, FormBtn } from "../../components/Form";
 import Wrapper from "../../components/Wrapper"
 
 class Home extends Component {
@@ -61,12 +61,12 @@ class Home extends Component {
     return (
     <div>
     <Wrapper>
-    <Jumbotron>
-        <h1>NYT React Search</h1>
-    </Jumbotron>
       <Container fluid>
         <Row>
           <Col size="md-12">
+            <Jumbotron>
+                <h1>NYT Article Search</h1>
+            </Jumbotron>
             <form>
               <Input
                 value={this.state.title}
@@ -81,6 +81,13 @@ class Home extends Component {
                 Search
               </FormBtn>
             </form>
+            <List>
+                {/* {this.state.articles.map(articles)} */}
+                <ListItem
+                    // key={articles._id}
+                    // _id={articles._id}
+                />
+            </List>
           </Col>
         </Row>
       </Container>

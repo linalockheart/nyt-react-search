@@ -1,5 +1,7 @@
 const db = require("../models");
 
+//should it be dbArticle instead of dbModel below?
+
 module.exports = {
   findAll: function(req, res) {
     db.Article

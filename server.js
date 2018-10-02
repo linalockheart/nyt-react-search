@@ -4,14 +4,14 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 
-//don't need both of these. shoudl they live in a different file?
+//don't need both of these. need to decide and delete one. should this live in another file??
 const request = require("request");
 const axios = require("axios"); // 
 
 //need to make the dotenv file
 require("dotenv").config();
 
-//Do i want to use these here? Should I put them in conroller instead?
+//Do i want to use these here? Should I put them in conroller instead? Or routes?
 const ObjectId = require("mongoose").Types.ObjectId;
 const db = require("./models");
 ////////////////////////////////////////////////////////////////////
@@ -22,7 +22,8 @@ const app = express();
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(routes); //do I need this one here?
+app.use(bodyParser.json());
+app.use(routes);
 app.use(logger("dev"));
 
 // MongoDB Configuration configuration (Change this URL to your own DB)
