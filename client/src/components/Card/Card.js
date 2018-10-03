@@ -1,21 +1,10 @@
 import React from "react";
-import CardBtn from "./CardBtn";
+// import CardBtn from "./CardBtn";
 import "./Card.css";
 
 const Card = props => (
   <div className="card">
     <h3 class="card-header">Results</h3>
-    {/* {!props.image && <i className="fa fa-spinner fa-spin" aria-hidden="true" />} */}
-    <CardBtn
-      style={{ opacity: props.image ? 1 : 0 }}
-      onClick={props.handleBtnClick}
-      data-value="pass"
-    />
-    <CardBtn
-      style={{ opacity: props.image ? 1 : 0 }}
-      onClick={props.handleBtnClick}
-      data-value="pick"
-    />
   </div>
 );
 

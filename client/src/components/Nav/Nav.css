@@ -1,10 +1,16 @@
 .navbar {
     width: 100%;
     z-index: 100;
+    /* font-family: 'Limelight', cursive; */
+    font-family: 'Yeseva One', cursive;
 }
 
 .navbar-dark {
     background: black !important;
+}
+
+.navbar-brand {
+    font-size: 160%;
 }
 
 .btn-info {
@@ -27,7 +33,7 @@ h3 {
 }
 
 .nav-buttons {
-    width: 17%;
+    width: 18%;
 }
 
 .savedBtn {

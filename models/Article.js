@@ -10,23 +10,23 @@ const ArticleSchema = new Schema({
 
   date: { 
     type: Date,
-    required: true
+    default: Date.now
   },
 
-  summary: { //called snippet in JSON object
+  summary: { //called snippet in JSON object, might not need this here?
     type: String,
     required: true
   },
 
-  link: {
+  url: {
     type: String,
     required: true
   },
 
-  saved: {
-    type: Boolean,
-    default: false
-  }
+  // saved: {
+  //   type: Boolean,
+  //   default: false
+  // }
 
 });
 

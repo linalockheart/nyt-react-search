@@ -24,6 +24,7 @@ class Home extends Component {
     message: "Search for Articles to Begin!" //do i need this here? where is this even??
   };
 
+  //Might not need component did mount here????
   componentDidMount() {
     this.getArticles();
   }
