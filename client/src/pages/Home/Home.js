@@ -22,13 +22,15 @@ class Home extends Component {
     q: "",
     start_year: "",
     end_year: "",
+    saved: "", //should this be in the other file? idk.
     message: "Search for Articles to Begin!" //do i need this here? where is this even??
   };
 
-  //Might not need component did mount here????
 //   componentDidMount() {
-//     this.getArticles();
-//   }
+//     this.loadArticles();
+//   };
+
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -38,29 +40,26 @@ class Home extends Component {
     console.log("handle input change");
   };
 
-  getArticles = () => {
-    console.log("get articles function");
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log("handle form submit");
+    this.loadArticles();
+  };
+
+  loadArticles = () => {
+    console.log("load articles function in home.js");
     API.getArticles({
         q: this.state.q,
         start_year: this.state.start_year,
         end_year: this.state.end_year
     })
-      .then(res =>
-        this.setState({ 
-            articles: res.data,
-            message: !res.data.length
-                ? "No articles found. Please try another search."
-                : "" 
-        })
-      )
-      .catch(err => console.log(err));
-  };
+        .then(res => 
+            this.setState({ articles: res.data })
+        )
+        .catch(err => console.log(err))
+        // console.log(res);
+    };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    console.log("handle form submit");
-    this.getArticles();
-  };
 
   handleArticleSave = id => {
       const article = this.state.articles.find(article => article._id)
@@ -117,7 +116,7 @@ class Home extends Component {
 
         <Row>
           <Col size="md-12">
-            <Card>
+            <Card title="Results">
               {this.state.articles.length ? (
                 <List>
                   {this.state.articles.map(article => (

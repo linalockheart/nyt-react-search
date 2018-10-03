@@ -11,8 +11,6 @@ const Article = ({ title, url, _id, date, handleClick, buttonText }) => (
               <a
                 className="btn btn-light"
                 href={url}
-                rel="noopener noreferrer"
-                target="_blank"
                >
                 View Article
                </a>
