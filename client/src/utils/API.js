@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+
   // searchArticles: function(query) {
   //   return axios.get("/api/key")
   //       .then(res => axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {params: { "api-key": res.data.apiKey, "q": query}}))
@@ -12,7 +13,7 @@ export default {
     return axios.get("/api/articles");
   },
   // Gets the article with the given id
-  getArticle: function(id) {
+  getSavedArticles: function(id) {
     return axios.get("/api/articles/" + id);
   },
   // Deletes the article with the given id

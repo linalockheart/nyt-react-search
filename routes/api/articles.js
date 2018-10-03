@@ -2,7 +2,8 @@ const router = require("express").Router();
 const articlesController = require("../../controllers/articlesController");
 
 // Matches with "/api/articles"
-router.route("/")
+router
+  .route("/")
   .get(articlesController.findAll)
   .post(articlesController.create);
 
@@ -13,11 +14,11 @@ router
   .put(articlesController.update)
   .delete(articlesController.remove);
 
-  //is this right? should this be somewhere else?
-router
-  .route("/saved")
-  .get(articlesController.findById)
-  .put(articlesController.update)
-  .delete(articlesController.remove);
+//don't think i need this here
+// router
+//   .route("/saved")
+//   .get(articlesController.findById)
+//   .put(articlesController.update)
+//   .delete(articlesController.remove);
 
 module.exports = router;

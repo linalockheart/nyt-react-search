@@ -23,7 +23,6 @@ class Home extends Component {
     start_year: "",
     end_year: "",
     message: "Search for Articles to Begin!", //do i need this here? where is this even??
-    buttonText: ""
   };
 
   //Might not need component did mount here????
@@ -85,7 +84,7 @@ class Home extends Component {
             </Jumbotron>
             <form>
               <Input
-                handleInputChange={this.handleInputChange}
+                onChange={this.handleInputChange}
                 name="search"
                 placeholder="Enter a topic to search (required)"
                 q={this.state.q}
@@ -93,20 +92,19 @@ class Home extends Component {
                 end_year={this.state.end_year}
               />
             <Input
-                handleInputChange={this.handleInputChange}
+                onChange={this.handleInputChange}
                 name="startyear"
                 placeholder="Start Year (optional)"
                 start_year={this.state.start_year}
               />
             <Input
-                handleInputChange={this.handleInputChange}
+                onChange={this.handleInputChange}
                 name="endyear"
                 placeholder="End Year (optional)"
-
                 end_year={this.state.end_year}
               />
               <FormBtn
-                handleFormSubmit={this.handleFormSubmit}
+                onClick={this.handleFormSubmit}
               >
                 Search
               </FormBtn>
