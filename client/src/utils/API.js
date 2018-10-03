@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
 
   // Gets all articles
-  getArticles: function(q, start_year, end_year) {
+  getArticles: function() {
     return axios.get("/api/nyt");
   },
   // Gets the article with the given id

@@ -44,6 +44,13 @@ componentDidMount() {
       .catch(err => console.log(err));
   };
 
+  deleteArticle = id => {
+    API.deleteArticle(id)
+      .then(res => this.getArticles())
+      .catch(err => console.log(err));
+  };
+//should this delete article be in saved instead????
+
 render() {
   return (
 

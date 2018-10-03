@@ -5,7 +5,6 @@
 // publication date, and allows the user to visit an article's url or save the article to the MongoDB.
 
 import React, { Component } from "react";
-// import DeleteBtn from "../../components/DeleteBtn";
 import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
@@ -19,11 +18,11 @@ import Article from "../../components/Article";
 class Home extends Component {
   state = {
     articles: [],
-    q: "",
-    start_year: "",
-    end_year: "",
-    saved: "", //should this be in the other file? idk.
-    message: "Search for Articles to Begin!" //do i need this here? where is this even??
+    q: ""
+    // start_year: "",
+    // end_year: "",
+    // saved: "", should this be in the other file? idk.
+    // message: "Search for Articles to Begin!" do i need this here? where is this even??
   };
 
 //   componentDidMount() {
@@ -38,43 +37,34 @@ class Home extends Component {
       [name]: value
     });
     console.log("handle input change");
+    console.log(event.target); //this is showing correctly
+    console.log(name);
+    console.log(value);
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
     console.log("handle form submit");
+    console.log(this.state.q);
+    this.setState({ q: this.state.q })
     this.loadArticles();
   };
 
   loadArticles = () => {
     console.log("load articles function in home.js");
-    API.getArticles({
-        q: this.state.q,
-        start_year: this.state.start_year,
-        end_year: this.state.end_year
-    })
+    if (this.state.q) {
+        API.getArticles(this.state.q)
         .then(res => 
-            this.setState({ articles: res.data })
+            this.setState({ articles: res.data, q: "" })
         )
         .catch(err => console.log(err))
-        // console.log(res);
-    };
-
+    }
+  };
 
   handleArticleSave = id => {
       const article = this.state.articles.find(article => article._id)
       API.saveArticle(article).then(res => this.getArticles());
   };
-
-  deleteArticle = id => {
-    API.deleteArticle(id)
-      .then(res => this.getArticles())
-      .catch(err => console.log(err));
-  };
-//should this delete article be in saved instead????
-
-
-
 
   render() {
     return (
@@ -88,10 +78,10 @@ class Home extends Component {
             </Jumbotron>
             <form>
               <Input
+                value={this.state.q}
                 onChange={this.handleInputChange}
                 name="q"
                 placeholder="Enter a topic to search (required)"
-                value={this.state.q}
               />
             <Input
                 onChange={this.handleInputChange}
