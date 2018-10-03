@@ -15,6 +15,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import Wrapper from "../../components/Wrapper";
 import Card from "../../components/Card";
+import Article from "../../components/Article";
 
 
 class Saved extends Component {
@@ -23,12 +24,12 @@ class Saved extends Component {
     };
 
 componentDidMount() {
-    this.loadArticles();
+    this.getSavedArticles();
   };
 
   //getSavedArticles function
-  loadArticles = () => {
-    API.getArticles()
+  getSavedArticles = () => {
+    API.getSavedArticles()
       .then(res =>
         this.setState({ 
           articles: res.data, 
@@ -37,9 +38,9 @@ componentDidMount() {
       .catch(err => console.log(err));
   };
 
-  deleteArticle = id => {
+  handleArticleDelete = id => {
     API.deleteArticle(id)
-      .then(res => this.loadArticles())
+      .then(res => this.getSavedArticles())
       .catch(err => console.log(err));
   };
 
@@ -57,19 +58,23 @@ render() {
           <Card>
             {this.state.articles.length ? (
               <List>
-                {this.state.articles.map(articles => (
-                  <ListItem key={articles._id}>
-                    <Link to={"/articles/" + articles._id}>
-                      <strong>
-                        {articles.title} by {articles.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteArticle(articles._id)} />
+                {this.state.articles.map(article => (
+                  <ListItem>
+                  <Article
+                    key={article._id}
+                    _id={article._id}
+                    title={article.headline.main}
+                    url={article.web_url}
+                    date={article.pub_date}
+                    handleClick={this.handleArticleDelete}
+                    buttonText="Delete"
+                    saved
+                  />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3>No Saved Articles</h3>
             )}
             </Card>
           </Col>

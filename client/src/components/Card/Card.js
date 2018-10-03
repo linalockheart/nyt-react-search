@@ -4,7 +4,7 @@ import "./Card.css";
 
 const Card = props => (
   <div className="card">
-    <h3 class="card-header">Results</h3>
+    <h3 className="card-header">Results</h3>
   </div>
 );
 

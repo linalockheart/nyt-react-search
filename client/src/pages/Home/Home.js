@@ -14,6 +14,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import Wrapper from "../../components/Wrapper";
 import Card from "../../components/Card";
+import Article from "../../components/Article";
 
 class Home extends Component {
   state = {
@@ -21,13 +22,14 @@ class Home extends Component {
     q: "",
     start_year: "",
     end_year: "",
-    message: "Search for Articles to Begin!" //do i need this here? where is this even??
+    message: "Search for Articles to Begin!", //do i need this here? where is this even??
+    buttonText: ""
   };
 
   //Might not need component did mount here????
-  componentDidMount() {
-    this.getArticles();
-  }
+//   componentDidMount() {
+//     this.getArticles();
+//   }
 
   getArticles = () => {
     API.getArticles({
@@ -49,15 +51,6 @@ class Home extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.getArticles();
-    // if (this.state.title && this.state.author) {
-    //   API.saveArticle({
-    //     title: this.state.title,
-    //     author: this.state.author,
-    //     synopsis: this.state.synopsis
-    //   })
-    //     .then(res => this.loadArticles())
-    //     .catch(err => console.log(err));
-    // }
   };
 
   handleArticleSave = id => {
@@ -67,7 +60,7 @@ class Home extends Component {
 
   deleteArticle = id => {
     API.deleteArticle(id)
-      .then(res => this.loadArticles())
+      .then(res => this.getArticles())
       .catch(err => console.log(err));
   };
 //should this delete article be in saved instead????
@@ -127,7 +120,8 @@ class Home extends Component {
               {this.state.articles.length ? (
                 <List>
                   {this.state.articles.map(article => (
-                    <ListItem
+                    <ListItem>
+                    <Article
                         key={article._id}
                         _id={article._id}
                         title={article.headline.main}
@@ -136,6 +130,7 @@ class Home extends Component {
                         handleClick={this.handleArticleSave}
                         buttonText="Save"
                     />
+                    </ListItem>
                 ))}
                 </List>
               ) : (
