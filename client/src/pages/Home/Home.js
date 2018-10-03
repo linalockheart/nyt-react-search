@@ -22,7 +22,7 @@ class Home extends Component {
     q: "",
     start_year: "",
     end_year: "",
-    message: "Search for Articles to Begin!", //do i need this here? where is this even??
+    message: "Search for Articles to Begin!" //do i need this here? where is this even??
   };
 
   //Might not need component did mount here????
@@ -30,7 +30,16 @@ class Home extends Component {
 //     this.getArticles();
 //   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    console.log("handle input change");
+  };
+
   getArticles = () => {
+    console.log("get articles function");
     API.getArticles({
         q: this.state.q,
         start_year: this.state.start_year,
@@ -49,6 +58,7 @@ class Home extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log("handle form submit");
     this.getArticles();
   };
 
@@ -64,12 +74,7 @@ class Home extends Component {
   };
 //should this delete article be in saved instead????
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+
 
 
   render() {
@@ -85,23 +90,21 @@ class Home extends Component {
             <form>
               <Input
                 onChange={this.handleInputChange}
-                name="search"
+                name="q"
                 placeholder="Enter a topic to search (required)"
-                q={this.state.q}
-                start_year={this.state.start_year}
-                end_year={this.state.end_year}
+                value={this.state.q}
               />
             <Input
                 onChange={this.handleInputChange}
-                name="startyear"
+                name="start_year"
                 placeholder="Start Year (optional)"
-                start_year={this.state.start_year}
+                value={this.state.start_year}
               />
             <Input
                 onChange={this.handleInputChange}
-                name="endyear"
+                name="end_year"
                 placeholder="End Year (optional)"
-                end_year={this.state.end_year}
+                value={this.state.end_year}
               />
               <FormBtn
                 onClick={this.handleFormSubmit}
@@ -132,7 +135,7 @@ class Home extends Component {
                 ))}
                 </List>
               ) : (
-                <h2>{this.state.message}</h2>
+                <h2 className="text-center">{this.state.message}</h2>
               )}
             </Card>
           </Col>

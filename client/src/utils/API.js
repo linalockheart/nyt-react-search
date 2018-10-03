@@ -3,15 +3,19 @@ import axios from "axios";
 export default {
 
   // searchArticles: function(query) {
-  //   return axios.get("/api/key")
+  //   return axios.get("/api/nyt")
   //       .then(res => axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {params: { "api-key": res.data.apiKey, "q": query}}))
   //       .catch(err => console.log(err));
   // },
 
-  // Gets all articles
   getArticles: function() {
-    return axios.get("/api/articles");
+    return axios.get("/api/nyt");
   },
+
+  // Gets all articles
+  // getArticles: function(y) {
+  //   return axios.get("/api/articles");
+  // },
   // Gets the article with the given id
   getSavedArticles: function(id) {
     return axios.get("/api/articles/" + id);
