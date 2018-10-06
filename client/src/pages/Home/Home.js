@@ -53,10 +53,12 @@ class Home extends Component {
   loadArticles = () => {
     console.log("load articles function in home.js");
     if (this.state.q) {
-        API.getArticles(this.state.q)
-        .then(res => 
+        API.getArticles({query: this.state.q})
+        .then(res => {
+            console.log(res.data);
             this.setState({ articles: res.data, q: "" })
-        )
+
+        })
         .catch(err => console.log(err))
     }
   };
@@ -105,29 +107,9 @@ class Home extends Component {
         </Row>
 
         <Row>
-          <Col size="md-12">
-            <Card title="Results">
-              {this.state.articles.length ? (
-                <List>
-                  {this.state.articles.map(article => (
-                    <ListItem>
-                    <Article
-                        key={article._id}
-                        _id={article._id}
-                        title={article.headline.main}
-                        url={article.web_url}
-                        date={article.pub_date}
-                        handleClick={this.handleArticleSave}
-                        buttonText="Save"
-                    />
-                    </ListItem>
-                ))}
-                </List>
-              ) : (
-                <h2 className="text-center">{this.state.message}</h2>
-              )}
-            </Card>
-          </Col>
+            <Col size="md-12">
+              <Card articles={this.state.articles}/>
+            </Col>
         </Row>
       </Container>
     </Wrapper>
@@ -137,3 +119,28 @@ class Home extends Component {
 }
 
 export default Home;
+
+
+
+
+
+
+// {this.state.articles.length ? (
+//   <p>yellow</p>
+//   // <List>
+//   //   {this.state.articles.map(article => (
+//   //     <li key={article._id}>hello</li>
+//   //     // <Article
+//   //     //     key={article._id}
+//   //     //     _id={article._id}
+//   //     //     title={article.headline.main}
+//   //     //     url={article.web_url}
+//   //     //     date={article.pub_date}
+//   //     //     handleClick={this.handleArticleSave}
+//   //     //     buttonText="Save"
+//   //     // />
+//   // ))}
+//   // </List>
+// ) : (
+//   <h2 className="text-center">{this.state.message}</h2>
+// )}

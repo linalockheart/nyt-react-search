@@ -3,8 +3,8 @@ import axios from "axios";
 export default {
 
   // Gets all articles
-  getArticles: function() {
-    return axios.get("/api/nyt");
+  getArticles: function(queryObj) {
+    return axios.post("/api/nyt", queryObj);
   },
   // Gets the article with the given id
   getSavedArticles: function(id) {
